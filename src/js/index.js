@@ -2,8 +2,10 @@
 
 //http://food2fork.com/api/search
 import Search from './models/Search';
-import * as searchView from './views/searchView'
+import Recipe from './models/Recipe';
+import * as searchView from './views/searchView';
 import { elements, renderLoader, clearLoader } from './views/base';
+
 
 
 //global state
@@ -13,6 +15,8 @@ import { elements, renderLoader, clearLoader } from './views/base';
 // - Favorite recipes
 const state = {};
 
+
+// SEARCH CONTROLLER
 const controlSearch = async () => {
   // 1) Get query from view
   const query = searchView.getInput(); // testing
@@ -24,13 +28,15 @@ const controlSearch = async () => {
     searchView.clearInput();
     searchView.clearResults();
     renderLoader(elements.searchRes);
-
-    // 4) Seach for recipes
-    await state.search.getResults();
-
-    // 5) render results on UI after await
-    clearLoader();
-    searchView.renderResults(state.search.result)
+    try {
+      // 4) Seach for recipes
+      await state.search.getResults();
+      // 5) render results on UI after await
+      clearLoader();
+      searchView.renderResults(state.search.result)
+    } catch (e) {
+      alert('wrong search');
+    }
   }
 }
 
@@ -45,6 +51,31 @@ elements.searchResPages.addEventListener('click', e => {
     const goToPage = parseInt(btn.dataset.goto);
     searchView.clearResults();
     searchView.renderResults(state.search.result, goToPage);
-
   }
-})
+});
+
+// RECIPE CONTROLLER
+const controlRecipe = async () => {
+  // get ID from url
+  const id = window.location.hash.replace('#','');
+  if (id) {
+    // Prepare UI for changes
+
+    // Create new recipe object
+    state.recipe = new Recipe(id);
+
+    try {
+      // Get the recipe data
+      await state.recipe.getRecipe();
+      // Calculate the data
+      state.recipe.calcTime();
+      state.recipe.calcServings();
+      // Render recipe
+      console.log(state.recipe);
+    } catch (e) {
+      alert('Wrong recipe');
+    }
+  }
+};
+
+['hashchange', 'load'].forEach(e => window.addEventListener(e, controlRecipe));
