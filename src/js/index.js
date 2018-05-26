@@ -1,2 +1,8 @@
 // Global app controller
-//0d2f14ad5fa3fdaa2547a936a2647828
+
+//http://food2fork.com/api/search
+import Search from './models/Search';
+
+const search = new Search('pizza');
+search.getResults();
+console.log(search);
