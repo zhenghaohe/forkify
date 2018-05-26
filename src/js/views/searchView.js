@@ -12,8 +12,8 @@ export const clearResults = () => {
 }
 
 export const highlightSelected = id => {
-  // document.querySelector(`a[href="#${id}]"`.classList.add('.result__link--active'))
     const resultsArr = Array.from(document.querySelectorAll('.results__link'));
+    // remove the style on selected item first
     resultsArr.forEach(el => {
         el.classList.remove('results__link--active');
     });

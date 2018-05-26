@@ -93,3 +93,12 @@ const controlRecipe = async () => {
 };
 
 ['hashchange', 'load'].forEach(e => window.addEventListener(e, controlRecipe));
+// handling recipe button clicks
+elements.recipe.addEventListener('click', e => {
+  if (e.target.matches('.btn-decrease, .btn-decrease *')) { // decrease
+    state.recipe.updataServings('des');
+  } else if (e.target.matches('.btn-increase, .btn-increase *')) { // increase
+    state.recipe.updataServings('ins');
+  }
+  console.log(state.recipe);
+})
