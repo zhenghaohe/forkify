@@ -96,9 +96,12 @@ const controlRecipe = async () => {
 // handling recipe button clicks
 elements.recipe.addEventListener('click', e => {
   if (e.target.matches('.btn-decrease, .btn-decrease *')) { // decrease
-    state.recipe.updataServings('des');
+    if (state.recipe.servings > 1) { // servings must be positive number
+      state.recipe.updateServings('des');
+      recipeView.updateServingsIngredients(state.recipe);
+    }
   } else if (e.target.matches('.btn-increase, .btn-increase *')) { // increase
-    state.recipe.updataServings('ins');
+    state.recipe.updateServings('ins');
+    recipeView.updateServingsIngredients(state.recipe);
   }
-  console.log(state.recipe);
 })
