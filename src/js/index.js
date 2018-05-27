@@ -148,21 +148,23 @@ const controlLike = () => {
       state.recipe.author,
       state.recipe.img
     );
-
     // Toggle the like button
     likeView.toggleLikeBtn(true);
     // Add like to UI list
-    console.log(state.likes);
+    likeView.renderLike(newLike);
 
   } else { // already liked
     // Remove like from the state
     state.likes.delete(id)
     // Toggle the like button
     likeView.toggleLikeBtn(false);
+    // remove like to UI list
+    likeView.deleteLike(id);
 
-    //
+
 
   }
+  likeView.toggleLikeMenu(state.likes.getNumLikes());
 };
 
 
