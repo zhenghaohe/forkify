@@ -1,6 +1,4 @@
 // Global app controller
-
-//http://food2fork.com/api/search
 import Search from './models/Search';
 import Recipe from './models/Recipe';
 import List from './models/List';
@@ -27,7 +25,7 @@ const state = {};
 // SEARCH CONTROLLER
 const controlSearch = async () => {
   // 1) Get query from view
-  const query = searchView.getInput(); // testing
+  const query = searchView.getInput();
 
   if (query) {
     // 2) new search object added to state
@@ -95,11 +93,11 @@ const controlRecipe = async () => {
         );
       }
         catch (err) {
-          console.log(err);
             alert('Error processing recipe!');
         }
       }
 };
+['hashchange', 'load'].forEach(e => window.addEventListener(e, controlRecipe));
 
 
 // LIST CONTROLLER
@@ -132,6 +130,7 @@ elements.shopping.addEventListener('click', e => {
     state.list.updateCount(id, val);
   }
 })
+
 
 // LIKE CONTROLLER
 const controlLike = () => {
@@ -191,7 +190,3 @@ elements.recipe.addEventListener('click', e => {
     controlLike();
   }
 });
-
-['hashchange', 'load'].forEach(e => window.addEventListener(e, controlRecipe));
-//testing
-window.state = state;

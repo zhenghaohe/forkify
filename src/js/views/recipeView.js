@@ -2,21 +2,23 @@ import { elements } from './base';
 import { Fraction } from 'fractional';
 
 const formatCount = count => {
-    if (count) {
-        const newCount = Math.round(count * 10000) / 10000;
-        const [int, dec] = newCount.toString().split('.').map(el => parseInt(el, 10));
-        if (!dec) {
-            return newCount;
-        }
-        if (int === 0) {
-            const fr = new Fraction(newCount);
-            return `${fr.numerator}/${fr.denominator}`;
-        } else {
-            const fr = new Fraction(newCount - int);
-            return `${int} ${fr.numerator}/${fr.denominator}`;
-        }
+
+  if (count) {
+    // count = 2.5 -> 5/2 > 2 1/2
+    const newCount = Math.round(count * 10000) / 10000;
+    const [int, dec] = newCount.toString().split('.').map(el => parseInt(el, 10));
+    if (!dec) {
+        return newCount;
     }
-    return '?';
+    if (int === 0) {
+        const fr = new Fraction(newCount);
+        return `${fr.numerator}/${fr.denominator}`;
+    } else {
+        const fr = new Fraction(newCount - int);
+        return `${int} ${fr.numerator}/${fr.denominator}`;
+    }
+  }
+  return '?';
 };
 
 
