@@ -250,7 +250,7 @@ body {
     transform: translateY(-2px); }
   .results__link--active,
   .likes__link--active {
-    background-color: #F9F5F3; }
+    background-color: #4fb5d699; }
   .results__fig,
   .likes__fig {
     flex: 0 0 5.5rem;
@@ -318,6 +318,7 @@ body {
     height: 30rem;
     position: relative;
     transform: scale(1.04) translateY(-1px);
+    box-shadow: 0 2rem 6rem 0.5rem rgba(101, 90, 86, 0.2);
     transform-origin: top; }
     .recipe__fig::before {
       content: '';
@@ -405,7 +406,7 @@ body {
     padding: 4rem 5rem;
     font-size: 1.5rem;
     line-height: 1.4;
-    background-color: #F2EFEE;
+    /* background-color: #F2EFEE; */
     display: flex;
     flex-direction: column;
     align-items: center; }
@@ -458,12 +459,12 @@ body {
     display: flex;
     align-items: flex-start;
     padding: 1.3rem 0;
-    border-bottom: 1px solid #F2EFEE;
+    /* border-bottom: 1px solid #F2EFEE; */
     position: relative; }
   .shopping__count {
     flex: 0 0 7.5rem;
     padding: .4rem .5rem;
-    border: 1px solid #F2EFEE;
+    /* border: 1px solid #F2EFEE; */
     border-radius: 3px;
     margin-right: 2rem;
     cursor: pointer;
@@ -479,7 +480,8 @@ body {
       border-radius: 3px; }
       .shopping__count input:focus {
         outline: none;
-        background-color: #F2EFEE; }
+        /* background-color: #F2EFEE;  */
+      }
     .shopping__count p {
       font-size: 1.2rem; }
   .shopping__description {
@@ -491,7 +493,7 @@ body {
     margin-top: .5rem;
     position: absolute;
     right: 0;
-    background-image: linear-gradient(to right, transparent 0%, #fff 40%, #fff 100%);
+    /* background-image: linear-gradient(to right, transparent 0%, #fff 40%, #fff 100%); */
     width: 3.75rem;
     padding-left: 2rem;
     visibility: hidden;

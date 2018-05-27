@@ -23,7 +23,6 @@ import { elements, renderLoader, clearLoader } from './views/base';
 // - Favorite recipes
 const state = {};
 
-//testing
 
 // SEARCH CONTROLLER
 const controlSearch = async () => {
@@ -160,14 +159,9 @@ const controlLike = () => {
     likeView.toggleLikeBtn(false);
     // remove like to UI list
     likeView.deleteLike(id);
-
-
-
   }
   likeView.toggleLikeMenu(state.likes.getNumLikes());
 };
-
-
 
 
 // handling recipe button clicks
@@ -190,4 +184,5 @@ elements.recipe.addEventListener('click', e => {
 });
 
 ['hashchange', 'load'].forEach(e => window.addEventListener(e, controlRecipe));
+//testing
 window.state = state;
