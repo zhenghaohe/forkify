@@ -3,8 +3,11 @@
 //http://food2fork.com/api/search
 import Search from './models/Search';
 import Recipe from './models/Recipe';
+import List from './models/List';
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
+import * as listView from './views/listView';
+
 import { elements, renderLoader, clearLoader } from './views/base';
 
 
@@ -14,6 +17,7 @@ import { elements, renderLoader, clearLoader } from './views/base';
 // - Current recipe object
 // - Shopping list object
 // - Favorite recipes
+window.state = state;
 const state = {};
 
 
@@ -92,7 +96,32 @@ const controlRecipe = async () => {
       }
 };
 
-['hashchange', 'load'].forEach(e => window.addEventListener(e, controlRecipe));
+// LIST CONTROLLER
+const controlList = () => {
+  // Create a new list if there is none
+  if (!state.list) state.list = new List();
+
+  // Add ingredients to the list and UI
+  state.recipe.ingredients.forEach( item => {
+    const newItem = state.list.add(item.count, item.unit, item.ingredient);
+    listView.renderItem(newItem);
+  })
+}
+
+// Handle delete and update list item event
+elements.shopping.addEventListener('click', e => {
+  const id = e.target.closest('.shopping__item').dataset.itemid;
+
+  // Handle the delete button
+  if (e.target.matches('.shopping__delete, .shopping__delete *')) {
+    // Delete from state
+    state.list.delete(id);
+
+    // Delete from UI
+    listView.deleteItem(id);
+  }
+})
+
 // handling recipe button clicks
 elements.recipe.addEventListener('click', e => {
   if (e.target.matches('.btn-decrease, .btn-decrease *')) { // decrease
@@ -103,5 +132,9 @@ elements.recipe.addEventListener('click', e => {
   } else if (e.target.matches('.btn-increase, .btn-increase *')) { // increase
     state.recipe.updateServings('ins');
     recipeView.updateServingsIngredients(state.recipe);
+  } else if (e.target.matches('.recipe__btn--add, .recipe__btn--add *')) { // add item to shopping cart
+    controlList();
   }
-})
+});
+
+['hashchange', 'load'].forEach(e => window.addEventListener(e, controlRecipe));
