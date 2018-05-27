@@ -21,4 +21,4 @@ Live Site @ Github Pages: [the CookBook](https://zhenghaohe.github.io/theCookBoo
 
 Recipe API from Food2Fork  [food2fork](https://food2fork.com/about/api)
 
-User Interface inspired by [Albina Suslova] (https://www.behance.net/gallery/59329617/Food-delivery-website)
+User Interface inspired by [Albina Suslova](https://www.behance.net/gallery/59329617/Food-delivery-website)
